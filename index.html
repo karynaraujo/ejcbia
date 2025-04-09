@@ -112,15 +112,15 @@
         position: fixed;
         right: 5%; /* Mensagens à direita */
         top: 0;
-        height: 100%;
+        height: 100%; /* Ocupa a altura total da tela */
         width: 25%; /* Ajuste para garantir que não seja cortado */
         z-index: 1;
         display: flex;
         flex-direction: column;
-        justify-content: flex-end;
+        justify-content: flex-start; /* Inicia do topo */
         align-items: flex-end;
-        animation: subir 40s linear infinite; /* Animação mais lenta */
-        gap: 30px;
+        animation: subir 30s linear infinite; /* Animação mais lenta */
+        gap: 20px;
         padding-bottom: 40px;
       }
 
@@ -136,31 +136,14 @@
         position: relative;
       }
 
-      .mensagens {
-        position: fixed;
-        right: 5%; /* Mensagens à direita */
-        top: 0;
-        height: 100%;
-        width: 25%; /* Ajuste para garantir que não seja cortado */
-        z-index: 1;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start; /* Inicia do topo */
-        align-items: flex-end;
-        animation: subir 20s linear infinite; /* Animação mais lenta */
-        gap: 30px;
-        padding-bottom: 40px;
-      }
-
       @keyframes subir {
         0% {
-          transform: translateY(100%);
+          transform: translateY(100%); /* Começa fora da tela */
         }
         100% {
-          transform: translateY(-100%);
+          transform: translateY(-300%); /* Sobe até o topo */
         }
       }
-
       #playBtn {
         margin-top: 20px; /* Ajustado para ficar logo abaixo do "Te amo muito" */
         padding: 10px 25px;
@@ -218,7 +201,7 @@
           transform: translateY(100%);
         }
         100% {
-          transform: translateY(-100%);
+          transform: translateY(-300%);
         }
       }
     </style>
