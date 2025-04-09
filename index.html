@@ -113,7 +113,7 @@
         right: 5%; /* Mensagens à direita */
         top: 0;
         height: 100%;
-        width: 20%; /* Menos espaço central */
+        width: 25%; /* Ajuste para garantir que não seja cortado */
         z-index: 1;
         display: flex;
         flex-direction: column;
@@ -125,7 +125,7 @@
       }
 
       .mensagens span {
-        font-size: 1.4em;
+        font-size: 1.2em; /* Reduzir o tamanho da fonte para evitar corte */
         color: #3a2719;
         background-color: #fff;
         border-radius: 20px;
@@ -136,17 +136,20 @@
         position: relative;
       }
 
-      .mensagens span::after {
-        content: "";
-        position: absolute;
-        bottom: -10px;
-        left: 20px;
-        width: 0;
-        height: 0;
-        border: 10px solid transparent;
-        border-top-color: #fff;
-        border-bottom: 0;
-        margin-left: -5px;
+      .mensagens {
+        position: fixed;
+        right: 5%; /* Mensagens à direita */
+        top: 0;
+        height: 100%;
+        width: 25%; /* Ajuste para garantir que não seja cortado */
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start; /* Inicia do topo */
+        align-items: flex-end;
+        animation: subir 45s linear infinite; /* Animação mais lenta */
+        gap: 30px;
+        padding-bottom: 40px;
       }
 
       @keyframes subir {
@@ -200,11 +203,11 @@
         display: flex;
         flex-direction: column;
         gap: 20px;
-        animation: slide 13s infinite linear; /* Acelerei a animação */
+        animation: slide 25s infinite linear; /* Acelerei a animação */
       }
 
       .imagens img {
-        width: 250px; /* Aumentei o tamanho das imagens */
+        width: 300px; /* Aumentei o tamanho das imagens */
         height: auto;
         border-radius: 10px;
         box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
@@ -326,36 +329,32 @@
         document.body.appendChild(heart);
       }
 
-      const audio = document.getElementById("musica");
-      const playBtn = document.getElementById("playBtn");
-      let playing = false;
+      let musica = document.getElementById("musica");
+      let playBtn = document.getElementById("playBtn");
 
-      playBtn.addEventListener("click", () => {
-        if (!playing) {
-          audio.play();
-          playing = true;
+      // Controle de música
+      playBtn.addEventListener("click", function () {
+        if (musica.paused) {
+          musica.play();
           playBtn.textContent = "⏸️ Pausar música";
         } else {
-          audio.pause();
-          playing = false;
-          playBtn.textContent = "▶️ Tocar música";
+          musica.pause();
+          playBtn.textContent = "▶️ Tocar música 💛";
         }
       });
 
-      // Controle de Pausa e Retorno para mensagens
-      const pauseMessagesBtn = document.getElementById("pauseMessagesBtn");
-      let paused = false;
+      // Pausar mensagens
+      let pauseMessagesBtn = document.getElementById("pauseMessagesBtn");
+      let mensagens = document.querySelector(".mensagens");
 
-      pauseMessagesBtn.addEventListener("click", () => {
-        const mensagens = document.querySelector(".mensagens");
-        if (paused) {
+      pauseMessagesBtn.addEventListener("click", function () {
+        if (mensagens.style.animationPlayState === "paused") {
           mensagens.style.animationPlayState = "running";
           pauseMessagesBtn.textContent = "⏸️ Pausar Mensagens";
         } else {
           mensagens.style.animationPlayState = "paused";
           pauseMessagesBtn.textContent = "▶️ Retomar Mensagens";
         }
-        paused = !paused;
       });
     </script>
   </body>
