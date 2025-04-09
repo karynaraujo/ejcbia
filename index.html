@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Bia 💛</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: "Trebuchet MS", sans-serif;
+        background-color: #fffbea; /* Fundo amarelinho */
+        overflow: hidden;
+      }
+
+      .overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background-color: rgba(255, 255, 255, 0.7);
+        z-index: 0;
+      }
+
+      .content {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+        padding: 100px 20px 40px;
+        color: #3a2719;
+      }
+
+      h1 {
+        font-size: 3em;
+        color: #ffb210;
+      }
+
+      p {
+        font-size: 1.5em;
+        margin-top: 30px;
+      }
+
+      a {
+        display: inline-block;
+        margin: 20px;
+        padding: 15px 30px;
+        background-color: #ffb210;
+        color: white;
+        text-decoration: none;
+        border-radius: 12px;
+        font-weight: bold;
+        transition: background-color 0.3s ease;
+      }
+
+      a:hover {
+        background-color: #e69a00;
+      }
+
+      .rodape {
+        margin-top: 40px;
+        font-size: 0.8em;
+        color: #555;
+        font-style: italic;
+      }
+
+      .heart {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background-color: pink;
+        transform: rotate(45deg);
+        animation: float 10s infinite ease-in-out;
+        opacity: 0.7;
+      }
+
+      .heart::before,
+      .heart::after {
+        content: "";
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background-color: pink;
+        border-radius: 50%;
+      }
+
+      .heart::before {
+        top: -10px;
+        left: 0;
+      }
+
+      .heart::after {
+        left: -10px;
+        top: 0;
+      }
+
+      @keyframes float {
+        0% {
+          transform: translateY(100vh) rotate(45deg);
+          opacity: 0;
+        }
+        50% {
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(-10vh) rotate(45deg);
+          opacity: 0;
+        }
+      }
+
+      /* Ajustes para as mensagens flutuantes */
+      .mensagens {
+        position: fixed;
+        right: 5%; /* Mensagens à direita */
+        top: 0;
+        height: 100%;
+        width: 20%; /* Menos espaço central */
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: flex-end;
+        animation: subir 45s linear infinite; /* Animação mais lenta */
+        gap: 30px;
+        padding-bottom: 40px;
+      }
+
+      .mensagens span {
+        font-size: 1.4em;
+        color: #3a2719;
+        background-color: #fff;
+        border-radius: 20px;
+        padding: 12px 20px;
+        max-width: 90%; /* Reduzir a largura das mensagens */
+        box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.1);
+        opacity: 0.9;
+        position: relative;
+      }
+
+      .mensagens span::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 20px;
+        width: 0;
+        height: 0;
+        border: 10px solid transparent;
+        border-top-color: #fff;
+        border-bottom: 0;
+        margin-left: -5px;
+      }
+
+      @keyframes subir {
+        0% {
+          transform: translateY(100%);
+        }
+        100% {
+          transform: translateY(-100%);
+        }
+      }
+
+      #playBtn {
+        margin-top: 20px; /* Ajustado para ficar logo abaixo do "Te amo muito" */
+        padding: 10px 25px;
+        font-size: 1em;
+        background-color: #ffb210;
+        color: white;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        z-index: 3;
+      }
+
+      #playBtn:hover {
+        background-color: #e69a00;
+      }
+
+      #pauseMessagesBtn {
+        margin-top: 20px; /* Ajustado para ficar logo abaixo do "Te amo muito" */
+        padding: 10px 25px;
+        font-size: 1em;
+        background-color: #ffb210;
+        color: white;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        z-index: 3;
+      }
+
+      #pauseMessagesBtn:hover {
+        background-color: #e69a00;
+      }
+
+      /* Ajustes para as imagens à esquerda */
+      .imagens {
+        position: fixed;
+        left: 5%; /* Imagens à esquerda */
+        top: 0;
+        height: 100%;
+        z-index: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        animation: slide 13s infinite linear; /* Acelerei a animação */
+      }
+
+      .imagens img {
+        width: 250px; /* Aumentei o tamanho das imagens */
+        height: auto;
+        border-radius: 10px;
+        box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      @keyframes slide {
+        0% {
+          transform: translateY(100%);
+        }
+        100% {
+          transform: translateY(-100%);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Textura opaca -->
+    <div class="overlay"></div>
+
+    <!-- Música -->
+    <audio id="musica" loop>
+      <source src="ill-be-there.mp3" type="audio/mpeg" />
+      Seu navegador não suporta áudio.
+    </audio>
+
+    <!-- Conteúdo -->
+    <div class="content">
+      <h1>Você é sensacional, Bia 💖🌼</h1>
+      <p>Esperamos que tenha sido um momento incrível!</p>
+      <p>Te amamos!</p>
+
+      <div class="rodape">
+        <p>(pq ser brega às vezes tb pode ser meio cunt 💅)</p>
+      </div>
+
+      <button id="playBtn">▶️ Tocar música 💛</button>
+      <button id="pauseMessagesBtn">⏸️ Pausar Mensagens</button>
+      <!-- Novo botão para pausar -->
+    </div>
+
+    <!-- Mensagens flutuantes -->
+    <div class="mensagens">
+      <span
+        >Bia, que felicidade por vc! Que esse momento tenha sido especial,
+        transformar e cheio de Cristo em cada detalhe. Um xero no seu coração
+        🌸💖 - Duda</span
+      >
+      <span
+        >Feliz que você tenha participado desse momento, Bia. Te amo e torço que
+        tenha sido tudo tão incrível quanto você!! - Karyna</span
+      >
+      <span
+        >Que esse encontro tenha te abraçado por dentro, amiga. Te amo! - Lívia
+      </span>
+      <span
+        >Bia, quero que saiba o quanto estou feliz por você estar vivendo esse
+        momento tão especial e importante na sua vida cristã. Espero que cada
+        momento tenha feito você refletir e entender o quanto é importante para
+        todos nós. Amo você. Com carinho, Ingrid. 💖💖
+      </span>
+      <span
+        >Bia, estou tão feliz por você estar vivendo esse momento tão especial!
+        Que cada instante do EJC traga mais luz e força para sua jornada com
+        Cristo. Você é muito amada. - Paula</span
+      >
+      <span
+        >Bia, ao longo do tempo, fui aprendendo tanto com você. Sua luz,
+        sabedoria e generosidade me inspiram de tantas maneiras. Agradeço por
+        cada risada, por cada conversa e, principalmente, por sua amizade. Te
+        admiro demais! 💖 - Stef</span
+      >
+      <span
+        >Amiga, tenho tanto orgulho de você! Sua coragem, gentileza e força me
+        inspiram a ser uma pessoa melhor todos os dias. Sou grata por ter você
+        como amiga e por todos os momentos especiais que já vivemos. Te amo! -
+        Debora</span
+      >
+      <span
+        >"Amiga, só de pensar que você está vivendo essa experiência, meu
+        coração transborda de alegria! Que o EJC te encha de paz e te ajude a se
+        encontrar ainda mais com Deus. Te amo muito! - Emilly
+      </span>
+      <span
+        >Bia, meu coração está sorrindo por você. Que Deus te conduza por
+        caminhos de sabedoria, alegria e muito amor. Estou aqui sempre para te
+        apoiar e torcer pela sua felicidade. 💖 - Luiza
+      </span>
+      <span
+        >Bia, é muito bom poder contar com você e compartilhar tantos momentos
+        legais. Sua amizade é algo que eu realmente valorizo. Tenho muito
+        orgulho de ver o quanto você tem crescido e se tornado essa pessoa
+        incrível. Estou feliz por ter você ao meu lado! - Tais
+      </span>
+    </div>
+
+    <!-- Imagens à esquerda -->
+    <div class="imagens">
+      <img src="background.jpg" alt="Imagem 1" />
+      <img src="1.JPG" alt="Imagem 2" />
+      <img src="2.JPG" alt="Imagem 3" />
+      <img src="3.JPG" alt="Imagem 4" />
+      <img src="4.JPG" alt="Imagem 5" />
+      <img src="5.jpg" alt="Imagem 6" />
+      <img src="6.jpg" alt="Imagem 7" />
+      <img src="7.jpg" alt="Imagem 8" />
+      <img src="8.jpg" alt="Imagem 9" />
+      <img src="10.jpg" alt="Imagem 10" />
+      <img src="11.jpg" alt="Imagem 11" />
+      <img src="12.jpg" alt="Imagem 12" />
+    </div>
+
+    <!-- Corações flutuando -->
+    <script>
+      for (let i = 0; i < 25; i++) {
+        let heart = document.createElement("div");
+        heart.className = "heart";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = 5 + Math.random() * 10 + "s";
+        document.body.appendChild(heart);
+      }
+
+      const audio = document.getElementById("musica");
+      const playBtn = document.getElementById("playBtn");
+      let playing = false;
+
+      playBtn.addEventListener("click", () => {
+        if (!playing) {
+          audio.play();
+          playing = true;
+          playBtn.textContent = "⏸️ Pausar música";
+        } else {
+          audio.pause();
+          playing = false;
+          playBtn.textContent = "▶️ Tocar música";
+        }
+      });
+
+      // Controle de Pausa e Retorno para mensagens
+      const pauseMessagesBtn = document.getElementById("pauseMessagesBtn");
+      let paused = false;
+
+      pauseMessagesBtn.addEventListener("click", () => {
+        const mensagens = document.querySelector(".mensagens");
+        if (paused) {
+          mensagens.style.animationPlayState = "running";
+          pauseMessagesBtn.textContent = "⏸️ Pausar Mensagens";
+        } else {
+          mensagens.style.animationPlayState = "paused";
+          pauseMessagesBtn.textContent = "▶️ Retomar Mensagens";
+        }
+        paused = !paused;
+      });
+    </script>
+  </body>
+</html>
