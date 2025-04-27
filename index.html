@@ -176,6 +176,22 @@
         background-color: #e69a00;
       }
 
+      #pauseImagesBtn {
+        margin-top: 20px; /* Ajustado para ficar logo abaixo do "Te amo muito" */
+        padding: 10px 25px;
+        font-size: 1em;
+        background-color: #ffb210;
+        color: white;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        z-index: 3;
+      }
+
+      #pauseImagesBtn:hover {
+        background-color: #e69a00;
+      }
+
       /* Ajustes para as imagens à esquerda */
       .imagens {
         position: fixed;
@@ -186,7 +202,7 @@
         display: flex;
         flex-direction: column;
         gap: 20px;
-        animation: slide 25s infinite linear; /* Acelerei a animação */
+        animation: slide 70s infinite linear; /* Acelerei a animação */
       }
 
       .imagens img {
@@ -201,9 +217,10 @@
           transform: translateY(100%);
         }
         100% {
-          transform: translateY(-300%);
+          transform: translateY(-2100%);
         }
       }
+    
     </style>
   </head>
   <body>
@@ -226,9 +243,9 @@
         <p>(pq ser brega às vezes tb pode ser meio cunt 💅)</p>
       </div>
 
+      <button id="pauseImagesBtn">⏸️ Pausar Fotinhas</button>
       <button id="playBtn">▶️ Tocar música 💛</button>
       <button id="pauseMessagesBtn">⏸️ Pausar Mensagens</button>
-      <!-- Novo botão para pausar -->
     </div>
 
     <!-- Mensagens flutuantes -->
@@ -260,12 +277,6 @@
         Com carinho, Paule 💕❤️</span
       >
       <span
-        >Bia, ao longo do tempo, fui aprendendo tanto com você. Sua luz,
-        sabedoria e generosidade me inspiram de tantas maneiras. Agradeço por
-        cada risada, por cada conversa e, principalmente, por sua amizade. Te
-        admiro demais! 💖 - Stef</span
-      >
-      <span
         >Bibs, que a presença do Senhor te alcance e te preencha todos os dias
         da sua vida, onde quer que você vá! Tô muito feliz por você, e sempre
         estarei torcendo pelo melhor de Deus em cada detalhe da sua vida Te amo
@@ -278,9 +289,10 @@
         Debora</span
       >
       <span
-        >"Amiga, só de pensar que você está vivendo essa experiência, meu
-        coração transborda de alegria! Que o EJC te encha de paz e te ajude a se
-        encontrar ainda mais com Deus. Te amo muito! - Emilly
+        >Biazinha, que Deus abençoe sua vida e que você nunca esqueça as
+        experiências incríveis que teve nesse momento tão importante. Deus
+        abençoe sempre sua vida e sua trajetória 🩵 você é linda por dentro e por
+        fora! - Emilly
       </span>
       <span
         >Bia, meu coração está sorrindo por você. Que Deus te conduza por
@@ -289,9 +301,18 @@
       </span>
       <span
         >Bia, é muito bom poder contar com você e compartilhar tantos momentos
-        legais. Sua amizade é algo que eu realmente valorizo. Tenho muito
-        orgulho de ver o quanto você tem crescido e se tornado essa pessoa
-        incrível. Estou feliz por ter você ao meu lado! - Tais
+        legais… Tenho muito orgulho de ver o quanto você tem crescido e do que
+        tem se tornado. Fico feliz em ter você ao meu lado 💕! - Tais
+      </span>
+      <span
+        >Bia, espero que esses dias tenham sido muito marcantes na sua vida.
+        Saiba que é muito possível ver Jesus na sua dedicação em tudo que faz,
+        na sua determinação, na sua preocupação em fazer tudo da melhor forma
+        que você puder e, acima de tudo, no seu cuidado com as pessoas. Fico
+        muito feliz em ver a sua iniciativa em estar mais próxima dEle e, assim,
+        usar suas qualidades em prol obra dEle. Saiba que essa foi uma decisão
+        muito importante. Estou muito feliz e ainda mais orgulhosa de você!
+        Conte comigo pra tudo! Um beijo e abraços de Rafinha, amo você💖
       </span>
     </div>
 
@@ -309,6 +330,18 @@
       <img src="10.jpg" alt="Imagem 10" />
       <img src="11.jpg" alt="Imagem 11" />
       <img src="12.jpg" alt="Imagem 12" />
+      <img src="13.jpg" alt="Imagem 13" />
+      <img src="14.jpg" alt="Imagem 14" />
+      <img src="15.jpg" alt="Imagem 15" />
+      <img src="16.jpg" alt="Imagem 16" />
+      <img src="17.jpg" alt="Imagem 17" />
+      <img src="18.jpg" alt="Imagem 18" />
+      <img src="19.jpg" alt="Imagem 19" />
+      <img src="20.jpg" alt="Imagem 20" />
+      <img src="21.jpg" alt="Imagem 21" />
+      <img src="22.jpg" alt="Imagem 22" />
+      <img src="23.jpg" alt="Imagem 23" />
+      <img src="24.jpg" alt="Imagem 24" />
     </div>
 
     <!-- Corações flutuando -->
@@ -348,6 +381,22 @@
           pauseMessagesBtn.textContent = "▶️ Retomar Mensagens";
         }
       });
+
+    const imagens = document.querySelector('.imagens');
+    const pauseImagesBtn = document.getElementById('pauseImagesBtn');
+    let imagensPausadas = false;
+
+   pauseImagesBtn.addEventListener('click', () => {
+      if (imagensPausadas) {
+        imagens.style.animationPlayState = 'running';
+        pauseImagesBtn.textContent = '⏸️ Pausar Fotinhas';
+      } else {
+        imagens.style.animationPlayState = 'paused';
+        pauseImagesBtn.textContent = '▶️ Retomar Fotinhas';
+      }
+      imagensPausadas = !imagensPausadas;
+   });
+  </script>
     </script>
   </body>
 </html>
